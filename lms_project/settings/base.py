@@ -1,14 +1,15 @@
 from pathlib import Path
 import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR должен указывать на корень проекта (DjangoLMS),
+# т.к. файл сейчас находится в lms_project/settings/base.py
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Environment setup (.env support)
 env = environ.Env(
     DEBUG=(bool, False),
 )
-environ.Env.read_env(str(BASE_DIR.parent / ".env"))
+environ.Env.read_env(str(BASE_DIR / ".env"))
 
 # Security
 SECRET_KEY = env("SECRET_KEY", default="dev-insecure-secret-key")
