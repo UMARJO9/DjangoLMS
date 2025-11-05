@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
 
     # local apps
     'core',
@@ -53,6 +55,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'EXCEPTION_HANDLER': 'lms_project.exceptions.drf_exception_handler',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 ROOT_URLCONF = 'lms_project.urls'
@@ -102,3 +105,11 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# drf-spectacular (OpenAPI/Swagger)
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DjangoLMS API',
+    'DESCRIPTION': 'Документация API для аутентификации и связанных эндпоинтов.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
